@@ -1,3 +1,4 @@
+using Abraham_API1_P1.BLL;
 using Abraham_API1_P1.DAL;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -14,6 +15,8 @@ var ConStr = builder.Configuration.GetConnectionString("ConStr");
 builder.Services.AddDbContext<Context>(options => options.UseSqlite(ConStr));
 
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<AportesBLL>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
