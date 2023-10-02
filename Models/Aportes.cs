@@ -7,10 +7,11 @@ namespace Abraham_API1_P1.Models
         public int AporteId { get; set; }
 
         [Required(ErrorMessage = "Es obligatorio introducir la Fecha")]
+
         public DateTime Fecha { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Es obligatorio introducir la Persona")]
-        [RegularExpression(@"^[A-Za-z\s]$",ErrorMessage = "Solo se permite Letras y Espacios")]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "El nombre solo debe contener letras y espacios.")]
         public string? Persona { get; set; }
 
         [Required(ErrorMessage = "Es obligatorio introducir la Observación")]
