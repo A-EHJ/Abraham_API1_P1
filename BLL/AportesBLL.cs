@@ -50,12 +50,8 @@ namespace Abraham_API1_P1.BLL
 
         public bool Eliminar(Aportes aportes) 
         {
-            if (aportes != null)
-            {
                 _context.Entry(aportes).State = EntityState.Deleted;
                 return _context.SaveChanges() > 0;
-            }
-            return false;
         }
 
         public Aportes? Buscar(int id)
