@@ -138,7 +138,8 @@
 
     void Eliminar()
     {
-        if (aporteBLL.Eliminar(aporte))
+        
+        if (aporteBLL.Existe(aporte.AporteId) && aporteBLL.Eliminar(this.aporte))
         {
             var mensaje = new NotificationMessage
                 {
@@ -149,7 +150,19 @@
                 };
             notificationService.Notify(mensaje);
         }
-        else{
+        else if (!aporteBLL.Existe(aporte.AporteId))
+        {
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "No se ha Eliminado",
+                    Detail = "No tiene ningun dato para eliminar",
+                    Duration = 4000
+                };
+            notificationService.Notify(mensaje);
+        }
+        else if (aporteBLL.Eliminar(this.aporte))
+        {
             var mensaje = new NotificationMessage
                 {
                     Severity = NotificationSeverity.Error,
@@ -159,6 +172,6 @@
                 };
             notificationService.Notify(mensaje);
         }
-            this.Nuevo();
-        }
+        this.Nuevo();
+    }
 }
